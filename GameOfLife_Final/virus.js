@@ -1,7 +1,6 @@
-class Virus {
+class Virus extends LivingCreature {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.energy = 1;
         this.directions = [];
     }
