@@ -1,10 +1,13 @@
-// let os = require("os");
+let express = require("express");
+let app = express();
 
-// let message = "This platform is ";
+app.get("/google/:search", function (req, res) {
+    let search = req.params.search;
+    res.redirect("https://google.com/search?q=" + search);
+});
 
-// function main() {
-//     console.log(message + os.platform());
-// }
+app.listen(3000, function () {
+    console.log("Server works!");
+});
 
-// main();
 
