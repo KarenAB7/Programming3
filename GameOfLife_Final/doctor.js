@@ -1,4 +1,6 @@
-class Doctor extends LivingCreature {
+let LivingCreature = require("./LivingCreature");
+
+module.exports = class Doctor extends LivingCreature {
     constructor(x, y) {
         super(x,y);
         this.energy = 25;
@@ -40,7 +42,7 @@ class Doctor extends LivingCreature {
 
     mul() {
         let emptyCells = this.chooseCell(0);
-        let newCell = random(emptyCells);
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -53,7 +55,7 @@ class Doctor extends LivingCreature {
 
     eat() {
         let foods = this.chooseCell(3);
-        let food = random(foods);
+        let food = foods[Math.floor(Math.random() * foods.length)];
         if (food) {
             this.energy += 5;
 
@@ -87,7 +89,7 @@ class Doctor extends LivingCreature {
     medicine() {
         
         let patients = this.chooseCell(4);
-        let patient = random(patients);
+        let patient = patients[Math.floor(Math.random() * patients.length)];
 
         if (patient) {
             
@@ -115,7 +117,7 @@ class Doctor extends LivingCreature {
     move() {
         this.energy -= 0.5;
         let emptyCells = this.chooseCell(0);
-        let newCell = random(emptyCells);
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
