@@ -9,7 +9,7 @@ app.use(express.static("."));
 app.get("/", function(req,res) {
     res.redirect("index.html");
 });
-server.listen(3000, () => {
+server.listen(3001, () => {
     console.log("Connected");
 });
 
@@ -79,7 +79,7 @@ function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount,
     return matrix;
 }
 
-let matrix = matrixGenerator(40, 45, 20, 7, 1, 2);
+matrix = matrixGenerator(40, 45, 20, 7, 1, 2);
 
 io.sockets.emit("send matrix", matrix);
 
@@ -99,3 +99,64 @@ let Predator = require("./predator");
 let Virus = require("./virus");
 let Doctor = require("./doctor");
 
+////
+
+function createObject() {
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 1) {
+                let grass = new Grass(x, y);
+                grassArr.push(grass);
+            }
+            else if (matrix[y][x] == 2) {
+                let grassEater = new GrassEater(x, y);
+                grassEaterArr.push(grassEater);
+            }
+            else if (matrix[y][x] == 3) {
+                let predator = new Predator(x, y);
+                predatorArr.push(predator);
+            }
+            else if(matrix[y][x] == 4) {
+                let virus = new Virus(x,y);
+                virusArr.push(virus);
+            }
+            else if (matrix[y][x] == 5) {
+                let doctor = new Doctor(x,y);
+                doctorArr.push(doctor);
+            }
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+}
+
+
+function game() {
+    for (let i in grassArr) {
+        grassArr[i].mul();
+    }
+
+
+    for (let i in grassEaterArr) {
+        grassEaterArr[i].eat();
+    }
+
+    
+    for (let i in predatorArr) {
+        predatorArr[i].eat();
+    }
+
+    for (let i in virusArr) {
+        virusArr[i].eat();    
+    }
+
+    for(let i in doctorArr) {
+        doctorArr[i].medicine();
+    }
+    io.sockets.emit("send matrix", matrix);
+}
+
+setInterval(game, 500);
+
+io.on("connection", function() {
+    createObject(matrix);
+});
