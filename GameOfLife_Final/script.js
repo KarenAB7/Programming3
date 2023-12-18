@@ -38,3 +38,8 @@ function nkarel(matrix) {
 setInterval(function() {
     socket.on("send matrix", nkarel);
 }, 500);
+
+
+function addGrass(){
+    socket.emit("addGrass");
+};

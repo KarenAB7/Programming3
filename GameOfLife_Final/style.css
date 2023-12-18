@@ -1,38 +1,43 @@
 #grassBtn { 
+    margin: 5px;
     background-color: green;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     border-width: 5px;
     border-radius: 20px;
 }
 
 #grassEaterBtn { 
+    margin: 5px;
     background-color: yellow;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     border-width: 5px;
     border-radius: 20px;
 }
 
 #predatorBtn { 
+    margin: 5px;
     background-color: red;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     border-width: 5px;
     border-radius: 20px;
 }
 
 #virusBtn { 
+    margin: 5px;
     background-color: lime;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     border-width: 5px;
     border-radius: 20px;
 }
 
 #doctorBtn { 
+    margin: 5px;
     background-color: aqua;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     border-width: 5px;
     border-radius: 20px;
