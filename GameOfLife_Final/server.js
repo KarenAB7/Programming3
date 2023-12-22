@@ -9,7 +9,7 @@ app.use(express.static("."));
 app.get("/", function(req,res) {
     res.redirect("index.html");
 });
-server.listen(3001, () => {
+server.listen(3000, () => {
     console.log("Connected");
 });
 
@@ -132,8 +132,11 @@ function createObject() {
 
 
 function game() {
+
     for (let i in grassArr) {
-        grassArr[i].mul();
+         
+            grassArr[i].mul();
+               
     }
 
 
@@ -156,7 +159,7 @@ function game() {
     io.sockets.emit("send matrix", matrix);
 }
 
-setInterval(game, 300);
+setInterval(game, 500);
 
 //Statistics
 
@@ -240,12 +243,38 @@ setInterval(function() {
     statistics.virus = virusArr.length;
     statistics.doctor = doctorArr.length;
     fs.writeFile("statistics.json", JSON.stringify(statistics), function(err) {
-        console.log("Game of life statistics");
+        // console.log("Game of life statistics");
     });
 }, 500);
 
+ let weather;
+
+function Spring() {
+    weather = "spring";
+    io.sockets.emit("Spring", weather);
+};
+
+function Summer() {
+    weather = "summer";
+    io.sockets.emit("Summer", weather);
+};
+
+function Autumn() {
+    weather = "autumn";
+    io.sockets.emit("Autumn", weather);
+};
+
+function Winter() {
+    weather = "winter";
+    io.sockets.emit("Winter", weather);
+};
+
 io.on("connection", function(socket) {
     createObject(matrix);
+    socket.on("Spring", Spring);
+    socket.on("Summer", Summer);
+    socket.on("Autumn", Autumn);
+    socket.on("Winter", Winter);
     socket.on("addGrass", addGrass);
     socket.on("addGrassEater", addGrassEater);
     socket.on("addPredator", addPredator);
