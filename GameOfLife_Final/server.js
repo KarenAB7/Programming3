@@ -98,6 +98,7 @@ let GrassEater = require("./grassEater");
 let Predator = require("./predator");
 let Virus = require("./virus");
 let Doctor = require("./doctor");
+const { log } = require("console");
 
 ////
 
@@ -177,6 +178,58 @@ function addGrass() {
     };
     io.sockets.emit("send matrix", matrix);
 };
+
+function addGrassEater() {
+    for(let i = 0; i < 5; i++) {
+        let x = Math.floor(Math.random() * matrix.length);
+        let y = Math.floor(Math.random() * matrix.length);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 2;
+            let newGrassEater = new GrassEater(x,y);
+            grassEaterArr.push(newGrassEater);
+        };
+    };
+    io.sockets.emit("send matrix", matrix);
+};
+
+function addPredator() {
+    for(let i = 0; i < 5; i++) {
+        let x = Math.floor(Math.random() * matrix.length);
+        let y = Math.floor(Math.random() * matrix.length);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 3;
+            let newPredator = new Predator(x,y);
+            predatorArr.push(newPredator);
+        };
+    };
+    io.sockets.emit("send matrix", matrix);
+};
+
+function addVirus() {
+    for(let i = 0; i < 3; i++) {
+        let x = Math.floor(Math.random() * matrix.length);
+        let y = Math.floor(Math.random() * matrix.length);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 3;
+            let newVirus = new Virus(x,y);
+            virusArr.push(newVirus);
+        };
+    };
+    io.sockets.emit("send matrix", matrix);
+};
+
+function addDoctor() {
+    for(let i = 0; i < 3; i++) {
+        let x = Math.floor(Math.random() * matrix.length);
+        let y = Math.floor(Math.random() * matrix.length);
+        if(matrix[y][x] == 0) {
+            matrix[y][x] = 3;
+            let newDoctor = new Doctor(x,y);
+            doctorArr.push(newDoctor);
+        };
+    };
+    io.sockets.emit("send matrix", matrix);
+};
 /////
 
 
@@ -189,9 +242,13 @@ setInterval(function() {
     fs.writeFile("statistics.json", JSON.stringify(statistics), function(err) {
         console.log("Game of life statistics");
     });
-},1000);
+}, 500);
 
 io.on("connection", function(socket) {
     createObject(matrix);
     socket.on("addGrass", addGrass);
+    socket.on("addGrassEater", addGrassEater);
+    socket.on("addPredator", addPredator);
+    socket.on("addVirus", addVirus);
+    socket.on("addDoctor", addDoctor);
 });
