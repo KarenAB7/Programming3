@@ -1,12 +1,3 @@
-/* #grassBtn { 
-    margin: 5px;
-    background-color: green;
-    font-size: 23px;
-    font-weight: bold;
-    border-width: 5px;
-    border-radius: 20px;
-} */
-
 #grassBtn {
     background-color: green;
     border-width: 5px;
@@ -27,15 +18,6 @@
 #grassBtn:hover {
     opacity: 1;
 }
-
-/* #grassEaterBtn { 
-    margin: 5px;
-    background-color: yellow;
-    font-size: 23px;
-    font-weight: bold;
-    border-width: 5px;
-    border-radius: 20px;
-} */
 
 #grassEaterBtn {
     background-color: yellow;
@@ -58,15 +40,6 @@
     opacity: 1;
 }
 
-/* #predatorBtn { 
-    margin: 5px;
-    background-color: red;
-    font-size: 23px;
-    font-weight: bold;
-    border-width: 5px;
-    border-radius: 20px;
-} */
-
 #predatorBtn {
     background-color: red;
     border-width: 5px;
@@ -88,15 +61,6 @@
     opacity: 1;
 }
 
-/* #virusBtn { 
-    margin: 5px;
-    background-color: lime;
-    font-size: 23px;
-    font-weight: bold;
-    border-width: 5px;
-    border-radius: 20px;
-} */
-
 #virusBtn {
     background-color: lime;
     border-width: 5px;
@@ -117,15 +81,6 @@
 #virusBtn:hover {
     opacity: 1;
 }
-
-/* #doctorBtn { 
-    margin: 5px;
-    background-color: aqua;
-    font-size: 23px;
-    font-weight: bold;
-    border-width: 5px;
-    border-radius: 20px;
-} */
 
 #doctorBtn {
     background-color: aqua;
@@ -165,5 +120,25 @@
   }
   
 #weatherBtn:hover {
+    opacity: 1;
+}
+
+#boomBtn {
+    background-color: blue;
+    border-width: 5px;
+    border-radius: 20px;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 17px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+#boomBtn:hover {
     opacity: 1;
 }
