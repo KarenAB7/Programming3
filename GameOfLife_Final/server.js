@@ -131,12 +131,14 @@ function createObject() {
 }
 
 
+isWinter = false;
 function game() {
     for (let i in grassArr) {
-
+        if (isWinter == true) {
+            break;
+        };
         grassArr[i].mul();
-
-    }
+    };
 
 
     for (let i in grassEaterArr) {
@@ -212,7 +214,7 @@ function addVirus() {
         let x = Math.floor(Math.random() * matrix.length);
         let y = Math.floor(Math.random() * matrix.length);
         if (matrix[y][x] == 0) {
-            matrix[y][x] = 3;
+            matrix[y][x] = 4;
             let newVirus = new Virus(x, y);
             virusArr.push(newVirus);
         };
@@ -250,21 +252,25 @@ let weather;
 
 function Spring() {
     weather = "spring";
+    isWinter = false;
     io.sockets.emit("Spring", weather);
 };
 
 function Summer() {
     weather = "summer";
+    isWinter = false;
     io.sockets.emit("Summer", weather);
 };
 
 function Autumn() {
     weather = "autumn";
+    isWinter = false;
     io.sockets.emit("Autumn", weather);
 };
 
 function Winter() {
     weather = "winter";
+    isWinter = true;
     io.sockets.emit("Winter", weather);
 };
 ///// Boom button functions
@@ -352,6 +358,7 @@ function boom() {
 
     io.on("connection", function (socket) {
         createObject(matrix);
+        socket.on("Boom", boom);
         socket.on("Spring", Spring);
         socket.on("Summer", Summer);
         socket.on("Autumn", Autumn);

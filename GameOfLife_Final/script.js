@@ -1,7 +1,6 @@
 let socket = io();
 
 let side = 35;
-// let weathers = ["Spring", "Summer", "Autumn", "Winter"];
 
 function setup() {
     createCanvas(40 * side, 40 * side);
@@ -102,6 +101,10 @@ function addVirus() {
 
 function addDoctor() {
     socket.emit("addDoctor");
+};
+
+function boom() {
+    socket.emit("Boom");
 };
 
 /////Weather

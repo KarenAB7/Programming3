@@ -9,7 +9,7 @@ module.exports = class Grass extends LivingCreature{
         this.multiply++;
         let emptyCells = super.chooseCell(0);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        if (newCell && this.multiply >= 4) {
+        if (newCell && this.multiply >= 2) {
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 1;
