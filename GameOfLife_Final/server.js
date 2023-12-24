@@ -227,7 +227,7 @@ function addDoctor() {
         let x = Math.floor(Math.random() * matrix.length);
         let y = Math.floor(Math.random() * matrix.length);
         if (matrix[y][x] == 0) {
-            matrix[y][x] = 3;
+            matrix[y][x] = 5;
             let newDoctor = new Doctor(x, y);
             doctorArr.push(newDoctor);
         };
